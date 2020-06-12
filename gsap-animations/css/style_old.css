@@ -1,0 +1,17 @@
+body {
+  background-color: hsl(0, 0%, 5%);
+  color: whitesmoke;
+}
+
+.frame {
+  width: 250px;
+  height: 250px;
+  border: 2px solid white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  visibility: hidden;
+}

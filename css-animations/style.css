@@ -1,0 +1,38 @@
+@keyframes appear {
+  0% {
+    transform: translateX(-300px);
+  }
+  10% {
+    transform: translateY(60px);
+  }
+  50% {
+    transform: translateY(-300px);
+  }
+  100% {
+    transform: translateX(300px);
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  animation-name: appear;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.box:hover {
+  animation-play-state: paused;
+}

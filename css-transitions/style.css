@@ -1,0 +1,76 @@
+@keyframes magic {
+  30% {
+    background-color: hsl(50, 100%, 50%);
+  }
+  60% {
+    background-color: hsl(150, 100%, 50%);
+  }
+  90% {
+    background-color: hsl(250, 100%, 50%);
+  }
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  overflow: hidden;
+  position: relative;
+  width: 320px;
+  height: 80px;
+  background-color: hsl(10, 100%, 50%);
+  border: none;
+  border-radius: 8px;
+  font-size: 2.3em;
+  color: white;
+  font-family: "Montserrat";
+  border-bottom: 10px solid hsl(10, 100%, 30%);
+  padding-top: 5px;
+  transition: background-color 0.3s 0.05s ease-in-out;
+  z-index: 1;
+}
+
+.btn:hover {
+  background-color: hsl(40, 100%, 50%);
+}
+
+.pink {
+  background-color: pink;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(10, 100%, 43%);
+  z-index: -1;
+  top: 0;
+  right: -100%;
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+}
+
+.btn:hover::after {
+  transform: translateX(-100%);
+}
+
+.box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(0, 0%, 20%);
+  border-radius: 50px;
+  transform: rotate(45deg);
+  transform: scale(0);
+
+  transition: transform 1s ease-in-out;
+}
+
+.btn:hover ~ .box {
+  transform: scale(5);
+  animation: magic 5s infinite;
+}

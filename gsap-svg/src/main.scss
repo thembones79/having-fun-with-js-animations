@@ -1,0 +1,24 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #02eb9a;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  margin: 0;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 90%;
+  height: 90%;
+}
