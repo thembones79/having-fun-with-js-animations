@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;700;800;900&display=swap");
+.App {
+  text-align: center;
+  display: flex;
+  width: 100%;
+  font-family: "Spartan", sans-serif;
+  justify-content: center;
+  align-items: flex-start;
+}
