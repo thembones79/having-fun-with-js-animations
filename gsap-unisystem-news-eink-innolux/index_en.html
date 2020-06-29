@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <p>Some text</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
+    <script>
+      const anim = document.getElementById("root");
+      fetch("/media/news_pictures/banner_28epapier_EN.svg")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (html) {
+          anim.innerHTML = html;
+        })
+        .then(function bannerAnimation() {
+          const background = document.getElementById("background");
+          const product = document.getElementById("product");
+          const arrow_w_txt = document.getElementById("arrow_w_txt");
+          const icon = document.getElementById("icon-2");
+          const title = document.getElementById("title-2");
+          const headline = document.getElementById("headline-2");
+          const eink = document.getElementById("eink");
+          const and = document.getElementById("and");
+          const innolux = document.getElementById("innolux");
+          const sidebar = document.getElementById("sidebar");
+          const rectangle = document.getElementById("rectangle");
+
+          gsap.set([background, product], { autoAlpha: 0 });
+          const tl = gsap.timeline({
+            defaults: { ease: "power3.inOut", duration: 1 },
+          });
+
+          tl.to(background, { autoAlpha: 0.15, ease: "power4.in" })
+            .from(sidebar, {
+              x: "-=400",
+              autoAlpha: 0,
+              ease: "power4.out",
+              duration: 0.6,
+            })
+            .from(
+              icon,
+              { y: "+=200", autoAlpha: 0, ease: "power4.out" },
+              "-=0.2"
+            )
+            .from(title, { scaleX: 0, y: "+=300", autoAlpha: 0 }, "-=1")
+            .from(rectangle, {
+              rotation: "200",
+              scale: 0,
+              transformOrigin: "50% 50%",
+              autoAlpha: 0,
+              ease: "back",
+            })
+            .from(headline, { scaleX: 0, autoAlpha: 0 }, "-=0.5")
+            .from(
+              eink,
+              {
+                scale: 0,
+                transformOrigin: "50% 50%",
+                autoAlpha: 0,
+                y: "+=100",
+                ease: "back",
+              },
+              "-=0.1"
+            )
+            .from(
+              and,
+              {
+                scale: 0,
+                transformOrigin: "50% 50%",
+                autoAlpha: 0,
+                y: "+=100",
+                ease: "back",
+              },
+              "-=0.9"
+            )
+            .from(
+              innolux,
+              {
+                scale: 0,
+                transformOrigin: "50% 50%",
+                autoAlpha: 0,
+                y: "+=100",
+                ease: "back",
+              },
+              "-=0.9"
+            )
+            .fromTo(
+              product,
+              { scale: 0.2, transformOrigin: "50% 50%" },
+              { autoAlpha: 1, scale: 0.9, ease: "back" }
+            )
+            .from(arrow_w_txt, {
+              y: "+=200",
+              autoAlpha: 0,
+              ease: "back",
+              duration: 0.9,
+            })
+            .fromTo(
+              product,
+              { scale: 0.9, transformOrigin: "50% 50%" },
+              {
+                scale: 1,
+                repeat: -1,
+                yoyo: true,
+                repeatDelay: 0,
+                duration: 0.8,
+                delay: 2,
+                ease: "power1.out",
+              }
+            );
+        });
+    </script>
+  </body>
+</html>
