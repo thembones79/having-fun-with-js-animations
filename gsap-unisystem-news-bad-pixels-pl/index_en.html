@@ -3,15 +3,101 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
     <div id="root"></div>
     <p>Some text</p>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="100%"
+      height="100%"
+      viewBox="0 0 2400 800"
+    >
+      <defs>
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;700;800;900&display=swap");
+        </style>
+        <filter
+          id="frame"
+          x="240"
+          y="49"
+          width="1921"
+          height="714"
+          filterUnits="userSpaceOnUse"
+        >
+          <feOffset dy="6" input="SourceAlpha" />
+          <feGaussianBlur stdDeviation="9" result="blur" />
+          <feFlood flood-opacity="0.161" />
+          <feComposite operator="in" in2="blur" />
+          <feComposite in="SourceGraphic" />
+        </filter>
+        <clipPath id="clip-brighter_1">
+          <rect width="2400" height="800" />
+        </clipPath>
+      </defs>
+      <g
+        id="brighter_1"
+        data-name="brighter – 1"
+        clip-path="url(#clip-brighter_1)"
+      >
+        <rect width="2400" height="800" fill="#fff" />
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#frame)">
+          <rect
+            id="frame-2"
+            data-name="frame"
+            width="1867"
+            height="660"
+            rx="17"
+            transform="translate(267 70)"
+            fill="#cecece"
+          />
+        </g>
+        <g
+          id="lcd-screen"
+          transform="translate(303 106)"
+          fill="#fff"
+          stroke="#111"
+          stroke-width="4"
+        >
+          <rect width="1794" height="538" stroke="none" class="jumbotron" />
+          <rect x="0.5" y="0.5" width="1793" height="537" fill="none" />
+        </g>
+        <text
+          id="NOT_A_UNISYSTEM_DISPLAY"
+          data-name="NOT A UNISYSTEM DISPLAY"
+          transform="translate(1707 698)"
+          fill="#707070"
+          font-size="26"
+          font-family="Spartan"
+          font-weight="800"
+        >
+          <tspan x="0" y="0">NOT</tspan>
+          <tspan y="0" font-weight="600">A UNISYSTEM DISPLAY</tspan>
+        </text>
+        <rect
+          id="hot-pixel"
+          width="20"
+          height="20"
+          transform="translate(450 197)"
+          fill="#fff"
+        />
+        <rect
+          id="dead-pixel"
+          width="20"
+          height="20"
+          transform="translate(1622 496)"
+        />
+      </g>
+    </svg>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
     <script>
       const anim = document.getElementById("root");
-      fetch("/media/news_pictures/P366IVN01.0_EN.svg")
+      fetch("/media/news_pictures/badpixels_EN_official.svg")
         .then(function (response) {
           return response.text();
         })
@@ -20,16 +106,27 @@
         })
         .then(function bannerAnimation() {
           const background = document.getElementById("background");
-          const product = document.getElementById("product-2");
-          const arrow_w_txt = document.getElementById("arrow_w_txt");
-          const icon = document.getElementById("icon-2");
+          const dead_pixel = document.getElementById("dead_pixel");
+          const dripping_goo = document.getElementById("dripping-goo");
+          const deadpixel_pixel = document.getElementById("deadpixel_pixel-2");
+          const deadpixel_dead = document.getElementById("deadpixel_dead");
+          const hot_pixel = document.getElementById("hot_pixel");
+          const hot_spices = document.getElementById("hot-spices");
+          const hotpixel_pixel = document.getElementById("hotpixel_pixel-2");
+          const hotpixel_hot = document.getElementById("hotpixel_hot");
+          const nice_grid = document.getElementById("nice_grid");
+          const dots = nice_grid.children;
+          const bigger_circle = document.getElementById("bigger_circle");
+          const smaller_circle = document.getElementById("smaller_circle");
+          const icon = document.getElementById("icon");
           const title = document.getElementById("title-2");
           const headline = document.getElementById("headline-2");
-          const auo = document.getElementById("auo");
+          const donut = document.getElementById("donut");
           const sidebar = document.getElementById("sidebar");
           const rectangle = document.getElementById("rectangle");
+          const lcdScreen = document.getElementById("lcd-screen");
 
-          gsap.set([background, product], { autoAlpha: 0 });
+          gsap.set([background], { autoAlpha: 0 });
           const tl = gsap.timeline({
             defaults: { ease: "power3.inOut", duration: 1 },
           });
@@ -54,42 +151,367 @@
               autoAlpha: 0,
               ease: "back",
             })
+            .addLabel("bonanza")
             .from(headline, { scaleX: 0, autoAlpha: 0 }, "-=0.5")
+            .from(dots, {
+              y: 100,
+              x: 100,
+              autoAlpha: 0,
+              stagger: 0.01, // 0.1 seconds between when each ".box" element starts animating
+            })
+            .fromTo(
+              nice_grid,
+              {
+                transformOrigin: "50% 50%",
+              },
+              {
+                repeat: -1,
+                x: "-=100",
+                yoyo: true,
+                repeatDelay: 0,
+                duration: 14.8,
+                delay: 1,
+                ease: "linear",
+              }
+            )
+            .to(
+              nice_grid,
+
+              {
+                repeat: -1,
+                y: "-=100",
+                yoyo: true,
+                repeatDelay: 0,
+                duration: 9.8,
+                delay: 1,
+                ease: "linear",
+              },
+              "bonanza+=5"
+            )
             .from(
-              auo,
+              bigger_circle,
               {
                 scale: 0,
                 transformOrigin: "50% 50%",
                 autoAlpha: 0,
-                y: "+=100",
                 ease: "back",
               },
-              "-=0.1"
+              "bonanza+=2"
             )
-            .fromTo(
-              product,
-              { scale: 0.2, transformOrigin: "50% 50%" },
-              { autoAlpha: 1, scale: 0.9, ease: "back" }
-            )
-            .from(arrow_w_txt, {
-              y: "+=200",
-              autoAlpha: 0,
-              ease: "back",
-              duration: 0.9,
-            })
-            .fromTo(
-              product,
-              { scale: 0.9, transformOrigin: "50% 50%" },
+            .to(
+              bigger_circle,
+
               {
-                scale: 1,
+                repeat: -1,
+                y: "-=200",
+                x: "+=200",
+                yoyo: true,
+                scale: 0.8,
+                repeatDelay: 0,
+                duration: 8.8,
+                delay: 1,
+                transformOrigin: "50% 50%",
+                ease: "linear",
+              },
+              "bonanza+=6"
+            )
+            .from(
+              smaller_circle,
+              {
+                scale: 0,
+                transformOrigin: "50% 50%",
+                autoAlpha: 0,
+                ease: "back",
+              },
+              "bonanza+=1"
+            )
+            .to(
+              smaller_circle,
+
+              {
+                repeat: -1,
+
+                x: "+=200",
+                yoyo: true,
+
+                repeatDelay: 0,
+                duration: 8.8,
+                delay: 1,
+                transformOrigin: "50% 50%",
+                ease: "linear",
+              },
+              "bonanza+=7"
+            )
+            .from(
+              donut,
+              {
+                rotation: "200",
+                scale: 0,
+                transformOrigin: "50% 0%",
+                autoAlpha: 0,
+                ease: "back",
+              },
+              "bonanza"
+            )
+            .fromTo(
+              donut,
+              {
+                rotation: "0",
+                transformOrigin: "50% 0%",
+              },
+              {
+                rotation: "-400",
                 repeat: -1,
                 yoyo: true,
-                repeatDelay: 0,
-                duration: 0.8,
+                repeatDelay: 1,
+                duration: 16.8,
                 delay: 2,
-                ease: "power1.out",
-              }
+                ease: "power1.inOut",
+              },
+              "bonanza+=7"
+            )
+
+            .from(
+              hot_pixel,
+              {
+                y: "-=500",
+                autoAlpha: 0,
+                ease: "back",
+                duration: 1.2,
+              },
+              "bonanza+=2"
+            )
+            .from(
+              hot_spices,
+              {
+                scaleY: 0,
+                autoAlpha: 0,
+                ease: "elastic",
+                transformOrigin: "100% 100%",
+              },
+              "bonanza+=2.8"
+            )
+            .to(
+              hot_spices,
+              {
+                repeat: -1,
+                autoAlpha: 0.7,
+                yoyo: true,
+                scaleY: 1.1,
+                transformOrigin: "100% 100%",
+                repeatDelay: 0,
+                duration: 0.08,
+                delay: 3.6,
+                ease: "linear",
+              },
+              "bonanza+=2.9"
+            )
+            .from(
+              hotpixel_hot,
+              {
+                scaleX: 0,
+                autoAlpha: 0,
+                ease: "back",
+                duration: 0.6,
+                transformOrigin: "100% 100%",
+              },
+              "bonanza+=2.9"
+            )
+            .from(
+              hotpixel_pixel,
+              {
+                scaleX: 0,
+                autoAlpha: 0,
+                ease: "back",
+                duration: 0.6,
+                transformOrigin: "100% 100%",
+              },
+              "bonanza+=3"
+            )
+            .from(
+              dead_pixel,
+              {
+                y: "+=300",
+                autoAlpha: 0,
+                ease: "back",
+                duration: 1.1,
+              },
+              "bonanza+=2.5"
+            )
+            .from(
+              dripping_goo,
+              {
+                scaleY: 0,
+                autoAlpha: 0,
+                ease: "elastic",
+                transformOrigin: "0% 0%",
+                duration: 2.2,
+              },
+              "bonanza+=3.3"
+            )
+            .to(
+              dripping_goo,
+
+              {
+                repeat: -1,
+                y: "-=20",
+                yoyo: true,
+                scaleY: 1.2,
+                transformOrigin: "0% 0%",
+                repeatDelay: 0,
+                duration: 1,
+                delay: 4,
+                ease: "power1.in",
+              },
+              "bonanza+=3.5"
+            )
+            .from(
+              deadpixel_dead,
+              {
+                scaleX: 0,
+                autoAlpha: 0,
+                ease: "back",
+                duration: 0.6,
+                transformOrigin: "0% 0%",
+              },
+              "bonanza+=3.4"
+            )
+            .from(
+              deadpixel_pixel,
+              {
+                scaleX: 0,
+                autoAlpha: 0,
+                ease: "back",
+                duration: 0.6,
+                transformOrigin: "0% 0%",
+              },
+              "bonanza+=3.5"
             );
+
+          const tlLcd = gsap.timeline({
+            defaults: {
+              ease: "power1.inOut",
+              duration: 1,
+            },
+          });
+          tlLcd
+            .to(lcdScreen, {
+              fill: "white",
+              duration: 2.8,
+            })
+            .to(lcdScreen, {
+              fill: "red",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 2.8,
+            })
+            .to(lcdScreen, {
+              fill: "green",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "blue",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "orange",
+              duration: 2.8,
+            })
+            .to(lcdScreen, {
+              fill: "silver",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "purple",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "gray",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "grey",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "yellow",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "yellow",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "yellow",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "yellow",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "yellow",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "yellow",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.1,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.8,
+            })
+            .to(lcdScreen, {
+              fill: "white",
+              duration: 0.8,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 0.8,
+            })
+            .to(lcdScreen, {
+              fill: "white",
+              duration: 0.8,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "black",
+              duration: 1.8,
+            })
+            .to(lcdScreen, {
+              fill: "white",
+              duration: 1.8,
+            })
+            .repeat(-1);
         });
     </script>
   </body>
