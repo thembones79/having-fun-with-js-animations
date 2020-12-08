@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <p>Some text</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
+    <script>
+      const anim = document.getElementById("root");
+      fetch("/media/news_pictures/banner_usem_epd_PL.svg")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (html) {
+          anim.innerHTML = html;
+        })
+        .then(function bannerAnimation() {
+          const background = document.getElementById("background");
+          const product = document.getElementById("product-2");
+          const arrow_w_txt = document.getElementById("arrow_w_txt");
+          const icon1 = document.getElementById("icon1");
+          const icon2 = document.getElementById("icon2");
+          const icon3 = document.getElementById("icon3");
+          const txt1 = document.getElementById("txt1");
+          const txt2 = document.getElementById("txt2");
+          const txt3 = document.getElementById("txt3");
+          const icon = document.getElementById("icon");
+          const title = document.getElementById("title-2");
+          const headline = document.getElementById("headline-2");
+          const sidebar = document.getElementById("sidebar");
+          const rectangle = document.getElementById("rectangle");
+
+          gsap.set([background, product], { autoAlpha: 0 });
+          const tl = gsap.timeline({
+            defaults: { ease: "power3.inOut", duration: 1 },
+          });
+
+          tl.to(background, { autoAlpha: 1, ease: "power4.in" })
+            .from(sidebar, {
+              x: "-=400",
+              autoAlpha: 0,
+              ease: "power4.out",
+              duration: 0.6,
+            })
+            .from(
+              icon,
+              { y: "+=200", autoAlpha: 0, ease: "power4.out" },
+              "-=0.2"
+            )
+            .from(title, { scaleX: 0, y: "+=300", autoAlpha: 0 }, "-=1")
+            .from(rectangle, {
+              rotation: "200",
+              scale: 0,
+              transformOrigin: "50% 50%",
+              autoAlpha: 0,
+              ease: "back",
+            })
+            .from(headline, { scaleX: 0, autoAlpha: 0 }, "-=0.5")
+            .fromTo(
+              product,
+              { scale: 0.2, transformOrigin: "50% 50%" },
+              { autoAlpha: 1, scale: 0.9, ease: "back" }
+            )
+            .from(arrow_w_txt, {
+              y: "+=200",
+              autoAlpha: 0,
+              ease: "elastic",
+              duration: 1.2,
+            })
+            .from([icon1, icon2, icon3], {
+              scale: 0,
+              transformOrigin: "50% 50%",
+              autoAlpha: 0,
+              ease: "elastic",
+              stagger: 0.5,
+              duration: 2.0,
+            })
+            .from(
+              [txt1, txt2, txt3],
+              {
+                scaleX: 0,
+                transformOrigin: "0% 50%",
+                autoAlpha: 0,
+                ease: "elastic",
+                stagger: 0.5,
+                duration: 2.0,
+              },
+              "-=2.68"
+            )
+
+            .fromTo(
+              product,
+              { scale: 0.9, transformOrigin: "50% 50%" },
+              {
+                scale: 1,
+                repeat: -1,
+                yoyo: true,
+                repeatDelay: 0,
+                duration: 1.1,
+                delay: 2,
+                ease: "power1.out",
+              }
+            );
+        });
+    </script>
+  </body>
+</html>
