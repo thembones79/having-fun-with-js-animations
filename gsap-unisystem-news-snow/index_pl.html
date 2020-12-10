@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <p>Some text</p>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="100%"
+      height="100%"
+      viewBox="0 0 2400 800"
+    >
+      <defs>
+        <style>
+          @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;700;800;900&display=swap");
+        </style>
+        <filter
+          id="frame"
+          x="240"
+          y="49"
+          width="1921"
+          height="714"
+          filterUnits="userSpaceOnUse"
+        >
+          <feOffset dy="6" input="SourceAlpha" />
+          <feGaussianBlur stdDeviation="9" result="blur" />
+          <feFlood flood-opacity="0.161" />
+          <feComposite operator="in" in2="blur" />
+          <feComposite in="SourceGraphic" />
+        </filter>
+        <clipPath id="clip-brighter_1">
+          <rect width="2400" height="800" />
+        </clipPath>
+      </defs>
+      <g
+        id="brighter_1"
+        data-name="brighter – 1"
+        clip-path="url(#clip-brighter_1)"
+      >
+        <rect width="2400" height="800" fill="#fff" />
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#frame)">
+          <rect
+            id="frame-2"
+            data-name="frame"
+            width="1867"
+            height="660"
+            rx="17"
+            transform="translate(267 70)"
+            fill="#cecece"
+          />
+        </g>
+        <g
+          id="lcd-screen"
+          transform="translate(303 106)"
+          fill="#fff"
+          stroke="#111"
+          stroke-width="4"
+        >
+          <rect width="1794" height="538" stroke="none" class="jumbotron" />
+          <rect x="0.5" y="0.5" width="1793" height="537" fill="none" />
+        </g>
+        <text
+          id="NOT_A_UNISYSTEM_DISPLAY"
+          data-name="NOT A UNISYSTEM DISPLAY"
+          transform="translate(1707 698)"
+          fill="#707070"
+          font-size="26"
+          font-family="Spartan"
+          font-weight="800"
+        >
+          <tspan x="0" y="0">NOT</tspan>
+          <tspan y="0" font-weight="600">A UNISYSTEM DISPLAY</tspan>
+        </text>
+        <rect
+          id="hot-pixel"
+          width="20"
+          height="20"
+          transform="translate(450 197)"
+          fill="#fff"
+        />
+        <rect
+          id="dead-pixel"
+          width="20"
+          height="20"
+          transform="translate(1622 496)"
+        />
+      </g>
+    </svg>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
+    <script>
+      const anim = document.getElementById("root");
+      fetch("/media/news_pictures/badpixels_PL_official.svg")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (html) {
+          anim.innerHTML = html;
+        })
+        .then(function bannerAnimation() {
+          const background = document.getElementById("background");
+          const canva = document.getElementById("badpixels_PL_official");
+          const dead_pixel = document.getElementById("dead_pixel");
+          const dripping_goo = document.getElementById("dripping-goo");
+          const deadpixel_pixel = document.getElementById("deadpixel_pixel-2");
+          const deadpixel_dead = document.getElementById("deadpixel_dead");
+          const hot_pixel = document.getElementById("hot_pixel");
+          const hot_spices = document.getElementById("hot-spices");
+          const hotpixel_pixel = document.getElementById("hotpixel_pixel-2");
+          const hotpixel_hot = document.getElementById("hotpixel_hot");
+          const nice_grid = document.getElementById("nice_grid");
+          const dots = nice_grid.children;
+          const bigger_circle = document.getElementById("bigger_circle");
+          const smaller_circle = document.getElementById("smaller_circle");
+          const icon = document.getElementById("icon");
+          const title = document.getElementById("title-2");
+          const headline = document.getElementById("headline-2");
+          const donut = document.getElementById("donut");
+          const sidebar = document.getElementById("sidebar");
+          const rectangle = document.getElementById("rectangle");
+          const lcdScreen = document.getElementById("lcd-screen");
+          const snowflakes = [];
+          const snowTl = gsap.timeline({
+            defaults: { duration: 1 },
+          });
+
+          const getRandom = (min, max) => {
+            return Math.random() * (max - min) + min;
+          };
+
+          console.log(rectangle.id);
+          const rectangle2 = rectangle.cloneNode(true);
+
+          const generateSnow = (noOfSnowflakes) => {
+            for (let i = 0; i < noOfSnowflakes; i++) {
+              snowflakes.push(rectangle.cloneNode(true));
+              snowflakes[i].id = "snowflake" + i;
+              canva.appendChild(snowflakes[i]);
+
+              let x = getRandom(0, 2400);
+              let y = getRandom(0, -17000) - 1000;
+              let scale = getRandom(0.04, 0.1);
+              let opacity = getRandom(0.2, 0.9);
+
+              snowTl.to(snowflakes[i], {
+                scale,
+                transformOrigin: "50% 50%",
+                x,
+                y,
+                opacity,
+                duration: 0.01,
+              });
+            }
+          };
+
+          const startSnowing = () => {
+            snowTl
+              .addLabel("start_snowing")
+
+              .to(
+                snowflakes,
+                {
+                  y: "+=20000",
+                  x: "+=100",
+                  stagger: 0.01,
+                  duration: 100,
+                  rotation: "4000",
+                  repeat: -1,
+                },
+                "start_snowing"
+              );
+          };
+
+          generateSnow(200);
+          startSnowing();
+
+          console.log(rectangle2);
+          console.log(rectangle2.id);
+          rectangle2.id = "dipa";
+          console.log(rectangle2.id);
+          //rectangle2.clone().appendTo("#badpixels_PL_official");
+          //rectangle.clone().appendTo("#root");
+
+          canva.appendChild(rectangle2);
+
+          // for (f = 1; f <= 10; f++) {
+          //   hot_pixel.clone().appendTo("#root");
+          // }
+          //
+          gsap.set([background, rectangle], { autoAlpha: 0 });
+          const tl = gsap.timeline({
+            defaults: { ease: "power3.inOut", duration: 1 },
+          });
+
+          tl.to(rectangle2, {
+            scale: 0.2,
+            transformOrigin: "50% 50%",
+          });
+        });
+    </script>
+  </body>
+</html>

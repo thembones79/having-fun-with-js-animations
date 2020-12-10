@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 2400 800">
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;700;800;900&display=swap");
+
+    </style>
+    <filter id="frame" x="240" y="49" width="1921" height="714" filterUnits="userSpaceOnUse">
+      <feOffset dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-brighter_1">
+      <rect width="2400" height="800"/>
+    </clipPath>
+  </defs>
+  <g id="brighter_1" data-name="brighter – 1" clip-path="url(#clip-brighter_1)">
+    <rect width="2400" height="800" fill="#fff"/>
+    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#frame)">
+      <rect id="frame-2" data-name="frame" width="1867" height="660" rx="17" transform="translate(267 70)" fill="#cecece"/>
+    </g>
+    <g id="lcd-screen" transform="translate(303 106)" fill="#fff" stroke="#cecece" stroke-width="1">
+      <rect width="1794" height="538" stroke="none"/>
+      <rect x="0.5" y="0.5" width="1793" height="537" fill="none"/>
+    </g>
+    <text id="NOT_A_UNISYSTEM_DISPLAY" data-name="NOT A UNISYSTEM DISPLAY" transform="translate(1707 698)" fill="#707070" font-size="26" font-family="Spartan" font-weight="800"><tspan x="0" y="0">NOT </tspan><tspan y="0" font-weight="600">A UNISYSTEM DISPLAY</tspan></text>
+    <rect id="hot-pixel" width="20" height="20" transform="translate(450 197)" fill="#fff"/>
+    <rect id="dead-pixel" width="20" height="20" transform="translate(1622 496)"/>
+  </g>
+</svg>
