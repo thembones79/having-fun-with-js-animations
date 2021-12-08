@@ -12,7 +12,7 @@
     <script>
       const anim = document.getElementById("root");
 
-      fetch("/media/news_pictures/banner_emc_tests_PL.svg")
+      fetch("/media/news_pictures/banner_emc_tests__EN.svg")
         .then(function (response) {
           return response.text();
         })
@@ -23,16 +23,10 @@
           const canvas = document.querySelector("#root > svg");
           const defs = document.querySelector("#root > svg > defs");
           const background = document.getElementById("background");
-          const product = document.getElementById("product-2");
+          const pulse = document.getElementById("pulse");
           const arrow_w_txt = document.getElementById("arrow_w_txt");
-          const icon1 = document.getElementById("icon1");
-          const icon2 = document.getElementById("icon2");
-          const icon3 = document.getElementById("icon3");
-          const txt1 = document.getElementById("txt1");
-          const txt2 = document.getElementById("txt2");
-          const txt3 = document.getElementById("txt3");
+          const arrow_w_txt2 = document.getElementById("arrow_w_txt2");
           const icon = document.getElementById("icon");
-          const logo = document.getElementById("logo");
           const title = document.getElementById("title-2");
           const headline = document.getElementById("headline-2");
           const sidebar = document.getElementById("sidebar");
@@ -46,7 +40,22 @@
 
           defs.insertBefore(spartanFont, defs.firstChild);
 
-          gsap.set([background, product], { autoAlpha: 0 });
+          const waves = [];
+
+          const generateWaves = (noOfWaves) => {
+            for (let i = 0; i < noOfWaves; i++) {
+              waves.push(pulse.cloneNode(true));
+              waves[i].id = "wave" + i;
+              canvas.appendChild(waves[i]);
+            }
+          };
+
+          generateWaves(10);
+
+          canvas.appendChild(document.getElementById("product"));
+          const product = document.getElementById("product");
+
+          gsap.set([background, product, pulse, waves], { autoAlpha: 0 });
           const tl = gsap.timeline({
             defaults: { ease: "power3.inOut", duration: 1 },
           });
@@ -72,57 +81,55 @@
               ease: "back",
             })
             .from(headline, { scaleX: 0, autoAlpha: 0 }, "-=0.5")
-            .from(logo, {
-              scaleY: 0,
-              autoAlpha: 0,
-              y: "-=50",
-              transformOrigin: "100% 100%",
-            })
+
             .fromTo(
               product,
               { scale: 0.2, transformOrigin: "50% 50%" },
               { autoAlpha: 1, scale: 0.99, ease: "back" }
             )
             .from(arrow_w_txt, {
-              y: "+=200",
+              x: "+=200",
               autoAlpha: 0,
               ease: "elastic",
-              duration: 1.2,
-            })
-            .from([icon1, icon2, icon3], {
-              scale: 0,
-              transformOrigin: "50% 50%",
-              autoAlpha: 0,
-              ease: "elastic",
-              stagger: 0.4,
               duration: 1.2,
             })
             .from(
-              [txt1, txt2, txt3],
+              arrow_w_txt2,
               {
-                scaleX: 0,
-                transformOrigin: "0% 50%",
+                x: "+=200",
                 autoAlpha: 0,
                 ease: "elastic",
-                stagger: 0.4,
                 duration: 1.2,
               },
-              "-=1.78"
+              "-=0.9"
             )
-
             .fromTo(
-              product,
-              { scale: 0.99, transformOrigin: "50% 50%" },
+              waves,
+              { autoAlpha: 1, scale: 0, transformOrigin: "50% 50%" },
               {
-                scale: 1.1,
+                scale: 9,
+                transformOrigin: "50% 50%",
+                stagger: 0.3,
+                autoAlpha: 0,
+                ease: "linear",
                 repeat: -1,
-                yoyo: true,
-                repeatDelay: 0,
-                duration: 1.1,
-                delay: 2,
-                ease: "power1.out",
+                duration: 1.2,
               }
             );
+
+          // .fromTo(
+          //   product,
+          //   { scale: 0.99, transformOrigin: "50% 50%" },
+          //   {
+          //     scale: 1.1,
+          //     repeat: -1,
+          //     yoyo: true,
+          //     repeatDelay: 0,
+          //     duration: 1.1,
+          //     delay: 2,
+          //     ease: "power1.out",
+          //   }
+          // );
         });
     </script>
   </body>

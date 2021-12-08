@@ -12,7 +12,7 @@
     <script>
       const anim = document.getElementById("root");
 
-      fetch("/media/news_pictures/banner_emc_tests_PL.svg")
+      fetch("/media/news_pictures/banner_emc_tests__PL.svg")
         .then(function (response) {
           return response.text();
         })
@@ -25,6 +25,7 @@
           const background = document.getElementById("background");
           const pulse = document.getElementById("pulse");
           const arrow_w_txt = document.getElementById("arrow_w_txt");
+          const arrow_w_txt2 = document.getElementById("arrow_w_txt2");
           const icon = document.getElementById("icon");
           const title = document.getElementById("title-2");
           const headline = document.getElementById("headline-2");
@@ -51,8 +52,8 @@
 
           generateWaves(10);
 
-          canvas.appendChild(document.getElementById("product-2"));
-          const product = document.getElementById("product-2");
+          canvas.appendChild(document.getElementById("product"));
+          const product = document.getElementById("product");
 
           gsap.set([background, product, pulse, waves], { autoAlpha: 0 });
           const tl = gsap.timeline({
@@ -87,11 +88,21 @@
               { autoAlpha: 1, scale: 0.99, ease: "back" }
             )
             .from(arrow_w_txt, {
-              y: "+=200",
+              x: "+=200",
               autoAlpha: 0,
               ease: "elastic",
               duration: 1.2,
             })
+            .from(
+              arrow_w_txt2,
+              {
+                x: "+=200",
+                autoAlpha: 0,
+                ease: "elastic",
+                duration: 1.2,
+              },
+              "-=0.9"
+            )
             .fromTo(
               waves,
               { autoAlpha: 1, scale: 0, transformOrigin: "50% 50%" },
